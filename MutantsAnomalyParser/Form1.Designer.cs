@@ -28,19 +28,54 @@
         /// </summary>
         private void InitializeComponent()
         {
+            button1 = new Button();
+            openFileDialog1 = new OpenFileDialog();
+            saveFileDialog1 = new SaveFileDialog();
+            button2 = new Button();
             SuspendLayout();
+            // 
+            // button1
+            // 
+            button1.Location = new Point(12, 12);
+            button1.Name = "button1";
+            button1.Size = new Size(125, 23);
+            button1.TabIndex = 0;
+            button1.Text = "Выбрать файл";
+            button1.UseVisualStyleBackColor = true;
+            button1.Click += button1_Click;
+            // 
+            // openFileDialog1
+            // 
+            openFileDialog1.FileName = "openFileDialog1";
+            // 
+            // button2
+            // 
+            button2.Location = new Point(143, 12);
+            button2.Name = "button2";
+            button2.Size = new Size(129, 23);
+            button2.TabIndex = 1;
+            button2.Text = "Сохранить файлы";
+            button2.UseVisualStyleBackColor = true;
+            button2.Click += button2_Click;
             // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(284, 60);
+            Controls.Add(button2);
+            Controls.Add(button1);
             Name = "Form1";
-            Text = "Form1";
+            Text = "Неебаться парсер";
             Load += Form1_Load;
             ResumeLayout(false);
         }
 
         #endregion
+
+        private Button button1;
+        private OpenFileDialog openFileDialog1;
+        private SaveFileDialog saveFileDialog1;
+        private Button button2;
     }
 }

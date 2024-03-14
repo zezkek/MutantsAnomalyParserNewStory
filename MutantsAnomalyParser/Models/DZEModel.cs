@@ -1,6 +1,6 @@
 ﻿namespace MutantsAnomalyParser.Models
 {
-    public class MutantModel
+    public class DZEModel
     {
         public required string MapName { get; set; }
         public required List<decimal> CameraPosition { get; set; }
