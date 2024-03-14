@@ -1,5 +1,6 @@
 using MutantsAnomalyParser.Models;
 using Newtonsoft.Json;
+using System.Globalization;
 
 namespace MutantsAnomalyParser
 {
@@ -51,17 +52,19 @@ namespace MutantsAnomalyParser
             outputMutants = string.Empty;
             int anomalies = 0;
             int mutants = 0;
+            NumberFormatInfo nfi = new NumberFormatInfo();
+            nfi.NumberDecimalSeparator = ".";
             for (int i = 0; i < dZEModel.EditorObjects.Count; i++)
             {
                 List<string> parsedName = dZEModel.EditorObjects[i].DisplayName.Split('=').ToList();
                 if (parsedName.Count == 5)
                 {
-                    outputAnomalies += string.Join("|", parsedName[0], dZEModel.EditorObjects[i].Position[0].ToString() + " " + dZEModel.EditorObjects[i].Position[1].ToString() + " " + dZEModel.EditorObjects[i].Position[2].ToString(), parsedName[1], parsedName[2], parsedName[3], dZEModel.EditorObjects[i].Type, parsedName[4] + "\n");
+                    outputAnomalies += string.Join("|", parsedName[0], Math.Round(dZEModel.EditorObjects[i].Position[0], 4).ToString(nfi) + " " + Math.Round(dZEModel.EditorObjects[i].Position[1], 4).ToString(nfi) + " " + Math.Round(dZEModel.EditorObjects[i].Position[2],4).ToString(nfi), parsedName[1], parsedName[2], parsedName[3], dZEModel.EditorObjects[i].Type, parsedName[4] + "\n");
                     anomalies++;
                 }
                 else if (parsedName.Count == 6)
                 {
-                    outputMutants += string.Join("|", parsedName[0], dZEModel.EditorObjects[i].Type, dZEModel.EditorObjects[i].Position[0].ToString() + " " + dZEModel.EditorObjects[i].Position[1].ToString() + " " + dZEModel.EditorObjects[i].Position[2].ToString(), parsedName[1], parsedName[2], parsedName[3], parsedName[4], parsedName[5] + "\n");
+                    outputMutants += string.Join("|", parsedName[0], dZEModel.EditorObjects[i].Type, Math.Round(dZEModel.EditorObjects[i].Position[0], 4).ToString(nfi) + " " + Math.Round(dZEModel.EditorObjects[i].Position[1], 4).ToString(nfi) + " " + Math.Round(dZEModel.EditorObjects[i].Position[2], 4).ToString(nfi), parsedName[1], parsedName[2], parsedName[3], parsedName[4], parsedName[5] + "\n");
                     mutants++;
                 }
                 else
